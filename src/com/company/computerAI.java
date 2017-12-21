@@ -14,11 +14,7 @@ public class computerAI {
     public void askForlocation() { //Needs to change because duh it will be automated, this is just a placeholder
         Scanner input = new Scanner(System.in);
         while (true) {
-            String tempLocation = input.nextLine();
-            if (Board.checkAvailable(Board.coordAdaptor(tempLocation))) {
-                Board.setBoard(Board.coordAdaptor(tempLocation), symbol);
-                break;
-            }
+            if (!Board.board[1][1].equals("-"))
         }
 
 

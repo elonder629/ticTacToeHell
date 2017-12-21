@@ -4,7 +4,8 @@ package com.company;
  * Created by el693 on 12/19/17.
  */
 public class Board {
-    public static String[][] board = new String[][]{{"-", "-", "-"},
+    public static String[][] board = new String[][]{
+            {"-", "-", "-"},
             {"-", "-", "-"}, //Sets up the game base values
             {"-", "-", "-"}};
 
