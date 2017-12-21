@@ -5,29 +5,30 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static boolean winner = false;
+
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Welcome to Tic Tac To my friends, can you beat the computer???????? (The answer if im a good coder is no) \n Please choose your symbol.....X or O");
+        boolean winner = false;
+        System.out.println("Welcome to Tic Tac To my friends, can you beat the computer???????? (The answer if im a good coder is no) \n Please choose your symbol.....X or O \n p.s X will go first!");
         String symbol = input.nextLine().toLowerCase();
-        Board board = new Board();
-        board.printBoard();
+        Player player = new Player(symbol);
 
-        while (!winner) {
-            while (true) {
-                String tempLocation = "";
-                System.out.println("Please place an x by using the format '0,0'");
-                tempLocation = input.nextLine();
-                if (board.checkAvailable(board.coordAdaptor(tempLocation))) {
-                    board.setBoard(board.coordAdaptor(tempLocation), symbol);
-                    break;
+        Board.printBoard();
+        int turn = 1;
+        while (!winner) { // game loop
+            if (turn % 2 == 1) {
+                if (player.symbol.equals("x")){
+                    player.askForlocation();
+                    if (Board.checkWin(symbol) || Board.tieCheck())
+                        winner = true;
                 }
-                else
-                    System.out.println("Please enter an available location");
+                else {
+                    computerAI
+                }
             }
+
+
         }
-
-
-
     }
 }

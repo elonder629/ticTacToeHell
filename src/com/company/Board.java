@@ -4,16 +4,11 @@ package com.company;
  * Created by el693 on 12/19/17.
  */
 public class Board {
-    public String[][] board = new String[3][3];
+    public static String[][] board = new String[][]{{"-", "-", "-"},
+            {"-", "-", "-"}, //Sets up the game base values
+            {"-", "-", "-"}};
 
-    public Board() {
-        for (int j = 0; j < 3; j++) {
-            for (int x = 0; x < 3; x++)
-                board[x][j] = "-";
-        }
-    }
-
-    public void printBoard() {
+    public static void printBoard() { //prints the board....duh
         for (int j = 0; j < 3; j++) {
             for (int x = 0; x < 3; x++)
                 System.out.print(board[j][x]);
@@ -21,23 +16,23 @@ public class Board {
         }
     }
 
-    public void setBoard(int[] coords, String symbol) {
+    public static void setBoard(int[] coords, String symbol) { //puts an x or o in a location
         board[coords[0]][coords[1]] = symbol;
         printBoard();
     }
 
-    public boolean checkAvailable(int[] coords) {
+    public static boolean checkAvailable(int[] coords) { //checks if a location is vacant
         return board[coords[0]][coords[1]].equals("-");
     }
 
-    public int[] coordAdaptor(String location) {
+    public static int[] coordAdaptor(String location) {// finds the x and y coords from user input
         int[] coords = new int[2];
         coords[0] = Integer.parseInt(location.substring(0, 1));
         coords[1] = Integer.parseInt(location.substring(2));
         return coords;
     }
 
-    public boolean checkWin(String symbol) {
+    public static boolean checkWin(String symbol) { // checks if there is a winning board
         int count;
         for (int j = 0; j < 3; j++) {
             count = 0;
@@ -74,4 +69,16 @@ public class Board {
         return false;
 
     }
+
+    public static boolean tieCheck() { // checks if there is a tie by seeing if  all spaces are filled because im lazy and
+        // its 2 am so im just only going to use this after the check win method because otherwise everything is broken
+        for (int j = 0; j < 3; j++) {
+            for (int x = 0; x < 3; x++) {
+                if (board[j][x].equals("-") )
+                    return false;
+            }
+        }
+        return true;
+    }
+
 }
