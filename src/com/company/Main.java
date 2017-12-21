@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Scanner;
+//TODO  Implement the computer AI, Be able to Reset the game, redesign  the board, check for a win, check for a tie
 
 public class Main {
 
