@@ -56,7 +56,6 @@ public class computerAI {
                     AICount++;
                 else if (Board.board[x][j].equals("-")) {
                     row = x;
-                    System.out.println("This happens");
                 }
 
             }
@@ -99,7 +98,6 @@ public class computerAI {
     }
 
     private static boolean tryToWin() {
-        System.out.println("tryto win");
         int openSpaceCount;
         int AICount;
         int row = 0;
@@ -117,7 +115,6 @@ public class computerAI {
 
             if (openSpaceCount == 1 && AICount == 2) {
                 Board.setBoard(j, row, symbol);
-
                 return true;
 
             }
@@ -167,7 +164,6 @@ public class computerAI {
         }
         if (openSpaceCount == 1 && AICount == 2) {
             Board.setBoard(row, (Board.board[row].length - 1) - row, symbol);
-            System.out.println("This happens");
             return true;
         }
         return false;
