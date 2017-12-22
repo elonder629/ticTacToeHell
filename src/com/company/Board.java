@@ -10,9 +10,12 @@ public class Board {
             {"-", "-", "-"}};
 
     public static void printBoard() { //prints the board....duh
+        System.out.println("\t0\t1\t2");
         for (int j = 0; j < 3; j++) {
-            for (int x = 0; x < 3; x++)
-                System.out.print(board[j][x]);
+            System.out.print(j + "|\t");
+            for (int x = 0; x < 3; x++) {
+                System.out.print(board[j][x] + "\t");
+            }
             System.out.println("\n");
         }
     }
@@ -20,6 +23,15 @@ public class Board {
     public static void setBoard(int[] coords, String symbol) { //puts an x or o in a location
         board[coords[0]][coords[1]] = symbol;
         printBoard();
+    }
+
+    public static void setBoard(int r, int c, String symbol) {
+        board[r][c] = symbol;
+        printBoard();
+    }
+
+    public static boolean checkAvailable(int r, int c) {
+        return board[r][c].equals("-");
     }
 
     public static boolean checkAvailable(int[] coords) { //checks if a location is vacant
@@ -75,11 +87,12 @@ public class Board {
         // its 2 am so im just only going to use this after the check win method because otherwise everything is broken
         for (int j = 0; j < 3; j++) {
             for (int x = 0; x < 3; x++) {
-                if (board[j][x].equals("-") )
+                if (board[j][x].equals("-"))
                     return false;
             }
         }
         return true;
     }
+
 
 }

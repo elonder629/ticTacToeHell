@@ -1,55 +1,51 @@
 package com.company;
 
 import java.util.Scanner;
-//TODO  Implement the computer AI, Be able to Reset the game, redesign  the board, check for a win, check for a tie
 
 public class Main {
-
 
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         boolean winner = false;
         System.out.println("Welcome to Tic Tac To my friends, can you beat the computer???????? (The answer if im a good coder is no) \n Please choose your symbol.....X or O \n p.s X will go first!");
-        String symbol = input.nextLine().toLowerCase();
-        Player player = new Player(symbol);
-        computerAI computer;
-        if (symbol.equals("x")) {
-            computer = new computerAI("o");
-        }
-        else {
-            computer = new computerAI("x");
-        }
+        Player.symbol = input.nextLine().toLowerCase();
+        if (Player.symbol.equals("x")) {
+            computerAI.symbol = "o";
+            Board.printBoard();
+        } else
+            computerAI.symbol = "x";
 
 
-        Board.printBoard();
         int turn = 1;
         while (!winner) { // game loop
             if (turn % 2 == 1) {
-                if (player.symbol.equals("x")){
-                    player.askForlocation();
-                    if (Board.checkWin(player.symbol) || Board.tieCheck())
+                if (Player.symbol.equals("x")) {
+                    Player.askForlocation();
+                    if (Board.checkWin(Player.symbol) || Board.tieCheck())
                         winner = true;
+                    turn++;
+                } else {
+                    computerAI.askForlocation();
+                    if (Board.checkWin(computerAI.symbol) || Board.tieCheck())
+                        winner = true;
+                    turn++;
                 }
-                else {
-                    computer.askForlocation();
-                    if (Board.checkWin(computer.symbol) || Board.tieCheck());
+            } else {
+                if (Player.symbol.equals("o")) {
+                    Player.askForlocation();
+                    if (Board.checkWin(Player.symbol) || Board.tieCheck())
                         winner = true;
-                }
-            }
-            else {
-                if (player.symbol.equals("o")){
-                    player.askForlocation();
-                    if (Board.checkWin(player.symbol) || Board.tieCheck())
+                    turn++;
+                } else {
+                    computerAI.askForlocation();
+                    if (Board.checkWin(computerAI.symbol) || Board.tieCheck())
                         winner = true;
-                }
-                else {
-                    computer.askForlocation();
-                    if (Board.checkWin(computer.symbol) || Board.tieCheck());
-                        winner = true;
+                    turn++;
                 }
 
             }
         }
+        System.out.println("Game Over");
     }
 }
